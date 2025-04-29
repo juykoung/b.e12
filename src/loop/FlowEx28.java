@@ -14,7 +14,7 @@ public class FlowEx28 {
             input = scanner.nextInt();
 
             if (input > answer) {
-                System.out.println("더 직은 수 넣기");
+                System.out.println("더 작은 수 넣기");
             } else {
                 System.out.println("더 큰 수로 다시 시도");
                 while (input != answer) ;
