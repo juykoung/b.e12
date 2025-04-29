@@ -3,8 +3,6 @@ package work;
 public class Card {
     final int NUMBER;
     final String KIND;
-    static int width;
-    static int height;
 
     Card() { this(1,"HEART"); }
 
@@ -24,11 +22,20 @@ class CardDeck {
 }
 
 class Player {
-    private String nickname;
-    int money;
+    private String nickname; // 20자 이하
+    int money = 10000;
     int winTime;
     int loseTime;
     int prise;
 
+    Player(String nickname, ) {
+        this.nickname = nickname;
+    }
 
+
+}
+class Dealer {
+public socre/int? evaluate() {
+
+}
 }
