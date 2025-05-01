@@ -62,13 +62,13 @@ class CardDeck {
         int index = (int) (Math.random() * CARD_NUM);
         return pick(index);
     }
-    }
+}
 
 
 class Player {
     private static final int MAX_NAME_LENGTH = 20;
     final String NICK_NAME; // 한 번 초기화되면 변경 불가
-    final int MAX_PLAYER = 4;   // ?? 이게 여기 맞나,,? main 클래스 아닌가,,?
+//    final int MAX_PLAYER = 4;   // ?? 이게 여기 맞나,,? main 클래스 아닌가,,?
     int money = 10000;
     int winTime = 0;     // 승리 횟수
     int loseTime = 0;    // 패배 횟수
@@ -115,11 +115,18 @@ class CardGame {
         final int MAX_CARD_DECK = 1;
 
         System.out.println("게임은 최대 4명까지 참여 가능합니다. 몇명이서 게임을 하나요?");
-        Scanner plyerNum = new Scanner(System.in);
-        int plyerNum =
+        Scanner scanner = new Scanner(System.in);
+        int plyerNum = scanner.nextInt();
+
+        while (!(0 > plyerNum || plyerNum > MAX_PLAYER)) {
+            System.out.println("플레이어 수가 맞지 않습니다. 4명 이하로 입력해주세요.");
+            Scanner scanner1 =
+        }
+
+
 
         System.out.println("플레이어의 이름을 입력하세요.");
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner1 = new Scanner(System.in);
         String user = scanner.nextLine();
 
         Player user = new Player();
