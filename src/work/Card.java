@@ -1,8 +1,8 @@
 package work;
 
-import casting.Car;
-
-import javax.sound.midi.Soundbank;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class Card {
@@ -42,7 +42,7 @@ class CardDeck {
                 cards[i++] = new Card(k, n+1);
             }
         }
-        }
+    }
     public void suffle () {
         for (int i = 0; i < cards.length; i++) {
             int j = (int) (Math.random() * cards.length);
@@ -64,11 +64,10 @@ class CardDeck {
     }
 }
 
-
 class Player {
     private static final int MAX_NAME_LENGTH = 20;
     final String NICK_NAME; // 한 번 초기화되면 변경 불가
-//    final int MAX_PLAYER = 4;   // ?? 이게 여기 맞나,,? main 클래스 아닌가,,?
+    //    final int MAX_PLAYER = 4;   // ?? 이게 여기 맞나,,? main 클래스 아닌가,,?
     int money = 10000;
     int winTime = 0;     // 승리 횟수
     int loseTime = 0;    // 패배 횟수
@@ -80,7 +79,7 @@ class Player {
         }
         NICK_NAME = nickName;
     }
-
+    // 이거 있어야되나?
     public Player() {
         NICK_NAME = "noName";
     }
@@ -93,44 +92,58 @@ class Player {
     public void addLose() { ++loseTime; }
 }
 
-class Dealer {
-    CardDeck cardDeck = new CardDeck();
-
-    // 점수로 반환 -> int 할래 score 할래?
-    public int evaluate() {
-
-    }
-
-    public void develop() {
-        cardDeck.suffle();// 플레이어에게 서로 다른 카드 5장을 나눠줌
-        for (int i = 0; i <; i++) {
-
-        }
-    }
-}
+//public class Dealer {
+//    CardDeck cardDeck = new CardDeck();
+//
+//    // 점수로 반환 -> int 할래 score 할래?
+//    public int evaluate() {
+//
+//    }
+//
+//    public void develop() {
+//        cardDeck.suffle();// 플레이어에게 서로 다른 카드 5장을 나눠줌
+//        for (int i = 0; i <; i++) {
+//
+//        }
+//    }
+//}
 
 class CardGame {
     public static void main(String[] args) {
         final int MAX_PLAYER = 4;
         final int MAX_CARD_DECK = 1;
 
-        System.out.println("게임은 최대 4명까지 참여 가능합니다. 몇명이서 게임을 하나요?");
-        Scanner scanner = new Scanner(System.in);
-        int plyerNum = scanner.nextInt();
+        Scanner input = new Scanner(System.in);
 
-        while (!(0 > plyerNum || plyerNum > MAX_PLAYER)) {
-            System.out.println("플레이어 수가 맞지 않습니다. 4명 이하로 입력해주세요.");
-            Scanner scanner1 =
+        // 플레이어가 0~4명 사이가 아닐 동안 반복
+//        플레이어가 0~4명이면 while문 종료하고 "게임을 시작합니다."
+        System.out.print("게임에 참여할 인원을 입력해주세요.(2명이상 4명이하) ");
+
+        int playerNum = 0;
+        while (true) {
+            playerNum = input.nextInt();
+            if (1 < playerNum && playerNum <= MAX_PLAYER) {
+                System.out.println(playerNum + "명이 게임을 시작합니다.");
+                break;
+            }
+            System.out.print("2~4명이 참여 가능합니다. ");
         }
+        System.out.println();
+        Player[] player = new Player[playerNum];
 
+        // playerNum만큼 반복하여 플레이어의 닉네임을 받고, 그걸 player 객체마다 부여
+        String userName = "";
 
-
-        System.out.println("플레이어의 이름을 입력하세요.");
-        Scanner scanner1 = new Scanner(System.in);
-        String user = scanner.nextLine();
-
-        Player user = new Player();
+        for (int i = 0; i < playerNum; i++) {
+            System.out.print("플레이어의 이름을 입력하세요. ");
+            Scanner input2 = new Scanner(System.in);
+            userName = input.nextLine();
+            player[i] = new Player(userName);
+            System.out.println("plyer" + i + " 닉네임 : " + userName);
+        }
+        System.out.println(Arrays.toString(player));
 
     }
+    // plyerNum = 3 -> Plyer plyer = new plyer[3]; -> 0,1,2
 
 }
